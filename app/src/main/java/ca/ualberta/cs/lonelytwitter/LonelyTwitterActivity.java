@@ -37,11 +37,25 @@ public class LonelyTwitterActivity extends Activity {
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
-				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
 
+				// Adds moods into a generic list and adds them to the final string.
+				ArrayList<Mood> moodList = new ArrayList<Mood>();
+				Confused confused = new Confused();
+				Surprise surprised = new Surprise();
+
+				moodList.add(confused);
+				moodList.add(surprised);
+
+				setResult(RESULT_OK);
+
+				//Build the string
+				String text = bodyText.getText().toString();
+
+				for (Mood mood : moodList) {
+					text += mood.getMood();
+				}
+
+				saveInFile(text, new Date(System.currentTimeMillis()));
 			}
 		});
 	}
