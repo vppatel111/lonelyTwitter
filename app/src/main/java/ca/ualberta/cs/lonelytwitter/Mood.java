@@ -17,10 +17,6 @@ public abstract class Mood {
 
     public abstract String getMood();
 
-    public Mood() {
-        this.date = new Date();
-    }
-
     public Mood(Date setDate) {
         this.date = setDate;
     }

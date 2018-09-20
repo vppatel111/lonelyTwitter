@@ -48,9 +48,10 @@ public class LonelyTwitterActivity extends Activity {
 
 				setResult(RESULT_OK);
 
-				//Build the string
+				// Build the string
 				String text = bodyText.getText().toString();
 
+				// Add the moods
 				for (Mood mood : moodList) {
 					text += mood.getMood();
 				}
