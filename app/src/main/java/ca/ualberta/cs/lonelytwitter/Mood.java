@@ -13,15 +13,24 @@ public abstract class Mood {
     // encapsulation, construtors, inheritance, polymorphism, abstract base classes and
     // generic types.
 
-    private Date date;
+    protected Date date;
+
+    public abstract String getMood();
 
     public Mood() {
-        date = new Date();
+        this.date = new Date();
     }
 
-    public Mood(Date pDate) {
-        date = pDate;
+    public Mood(Date setDate) {
+        this.date = setDate;
     }
 
+    public Date getDate() {
+        return this.date;
+    }
+
+    public void setDate(Date newDate) {
+        this.date = newDate;
+    }
 
 }
