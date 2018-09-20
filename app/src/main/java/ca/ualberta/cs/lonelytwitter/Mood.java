@@ -3,28 +3,24 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.Date;
 
 public abstract class Mood {
-    //Date setter and gette methds
-    //2 Constructors, one sets the date to default and the other takes an arguement
-    //Encapsulation should be followed
-    //Mood dependant format method which returns a string representing a mood
-    // Add a way for tweet to have a list of moods.
 
-    // In general we need, classes, methods, attributes, access modifiers,
-    // encapsulation, construtors, inheritance, polymorphism, abstract base classes and
-    // generic types.
-
+    // Date is in the package scope
     protected Date date;
 
+    // Each emotion should implement getMood individually.
     public abstract String getMood();
 
+    // Default constructor, we will initialize Mood with a date.
     public Mood(Date setDate) {
         this.date = setDate;
     }
 
+    // Getter method for date
     public Date getDate() {
         return this.date;
     }
 
+    // Setter method for date
     public void setDate(Date newDate) {
         this.date = newDate;
     }

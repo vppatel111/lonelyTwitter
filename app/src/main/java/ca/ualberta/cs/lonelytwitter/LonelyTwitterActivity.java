@@ -38,21 +38,27 @@ public class LonelyTwitterActivity extends Activity {
 
 			public void onClick(View v) {
 
-				// Adds moods into a generic list and adds them to the final string.
+				// Create an array list of Moods
 				ArrayList<Mood> moodList = new ArrayList<Mood>();
+
+				// Create two emotions
 				Confused confused = new Confused();
 				Surprise surprised = new Surprise();
 
+				// Add the emotions to the arraylist of Moods.
 				moodList.add(confused);
 				moodList.add(surprised);
 
 				setResult(RESULT_OK);
 
-				// Build the string
+				// Start building the output message
 				String text = bodyText.getText().toString();
 
-				// Add the moods
+				// Append the moods
 				for (Mood mood : moodList) {
+					text += " | ";
+
+					// Perform the getMood() function, we can do this because of polymorphism.
 					text += mood.getMood();
 				}
 
