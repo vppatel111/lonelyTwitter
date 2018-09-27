@@ -48,22 +48,9 @@ public class LonelyTwitterActivity extends Activity {
 
 			public void onClick(View v) {
 
-//				tweets.clear(); // Clear the tweet array list
-//				adapter.notifyDataSetChanged(); // Update the list view
-
-				//Clear the output file
-//				try {
-//					FileOutputStream fos = openFileOutput(FILENAME, 0);
-//					OutputStreamWriter osw = new OutputStreamWriter(fos);
-//					BufferedWriter writer = new BufferedWriter(osw);
-//
-//					fos.close();
-//				} catch (FileNotFoundException e) {
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-
+				tweets.clear(); // Clear the tweet array list
+				adapter.notifyDataSetChanged(); // Update the list view
+				saveInFile();
 
 			}
 
