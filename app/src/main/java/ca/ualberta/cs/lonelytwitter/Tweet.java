@@ -7,12 +7,17 @@ public abstract class Tweet {
     protected String message;
     protected Date date;
 
-    public  Tweet(String message) {
+    public Tweet() {
+        this.date = new Date();
+        this.message = " I am default message.";
+    }
+
+    public Tweet(String message) {
         this.message = message;
         this.date = new Date();
     }
 
-    public  Tweet(String message, Date date) {
+    public Tweet(String message, Date date) {
         this.message = message;
         this.date = date;
     }
@@ -28,6 +33,10 @@ public abstract class Tweet {
         }
 
         this.message = message;
+    }
+
+    public String toString() {
+        return this.date.toString() + " | " + this.message;
     }
 
     public abstract Boolean isImportant();
