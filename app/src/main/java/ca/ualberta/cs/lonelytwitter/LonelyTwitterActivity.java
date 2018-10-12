@@ -65,8 +65,15 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				tweetList.clear();
-				new ElasticsearchTweetController.SearchTweetTask().execute(bodyText.getText().toString());
-				adapter.notifyDataSetChanged();
+
+				try {
+					tweetList = new ElasticsearchTweetController.SearchTweetTask().execute(bodyText.getText().toString()).get();
+
+					adapter.notifyDataSetChanged();
+				} catch (Exception e) {
+
+				}
+
 			}
 		});
 
@@ -77,18 +84,18 @@ public class LonelyTwitterActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		adapter = new ArrayAdapter<Tweet>(this,
-				R.layout.list_item, tweetList);
-		oldTweetsList.setAdapter(adapter);
 
 		// We need to use "get" for the class to return a string
 		try {
 			tweetList = new ElasticsearchTweetController.GetTweetTask().execute("").get();
-			Log.d("VISHALTAG", "onStart: I got these many posts: " + tweetList.get(1).getMessage());
-			adapter.notifyDataSetChanged();
 		} catch (Exception e) {
 
 		}
+
+		adapter = new ArrayAdapter<Tweet>(this,
+				R.layout.list_item, tweetList);
+		oldTweetsList.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
 
 	}
 

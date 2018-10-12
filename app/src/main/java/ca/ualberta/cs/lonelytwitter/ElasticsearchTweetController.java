@@ -69,7 +69,6 @@ public class ElasticsearchTweetController {
                     // list, we simply add back into the array list.
                     tweetList = result.getSourceAsObjectList(NormalTweet.class);
 
-                    Log.d("VISHALTAG", "doInBackground: Get successful " + tweetList.size());
                     tweets.addAll(tweetList);
                 }
             } catch (IOException e) {
@@ -90,19 +89,19 @@ public class ElasticsearchTweetController {
             ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 
             String query = "{\n" +
-                    "    \"query\": {\n" +
-                    "        \"filtered\" : {\n" +
-                    "            \"query\" : {\n" +
-                    "                \"query_string\" : {\n" +
-                    "                    \"query\" : \"test\"\n" +
-                    "                }\n" +
-                    "            },\n" +
-                    "            \"filter\" : {\n" +
-                    "                \"term\" : { \"message\" : \"" + params[0] + "\" }\n" +
-                    "            }\n" +
-                    "        }\n" +
-                    "    }\n" +
-                    "}";
+                        "    \"query\": {\n" +
+                        "        \"filtered\" : {\n" +
+                        "            \"query\" : {\n" +
+                        "                \"query_string\" : {\n" +
+                        "                    \"query\" : \"message\"\n" +
+                        "                }\n" +
+                        "            },\n" +
+                        "            \"filter\" : {\n" +
+                        "                \"term\" : { \"message\" : \"" + params[0] + "\" }\n" +
+                        "            }\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "}";
 
             Search search = new Search.Builder(query)
                     .addIndex("vishal-wednesday")
@@ -119,6 +118,7 @@ public class ElasticsearchTweetController {
                     // We can't save into an arrayList because result only gives us a datatype of
                     // list, we simply add back into the array list.
                     tweetList = result.getSourceAsObjectList(NormalTweet.class);
+
                     tweets.addAll(tweetList);
                 }
             } catch (IOException e) {
