@@ -67,7 +67,10 @@ public class LonelyTwitterActivity extends Activity {
 				tweetList.clear();
 
 				try {
-					tweetList = new ElasticsearchTweetController.SearchTweetTask().execute(bodyText.getText().toString()).get();
+					// We need to maintain the original arraylist reference so we have to manually
+					// clear all elements and add them back in for it to display correctly.
+					ArrayList<Tweet> searchedTweets = new ElasticsearchTweetController.SearchTweetTask().execute(bodyText.getText().toString()).get();
+					tweetList.addAll(searchedTweets);
 
 					adapter.notifyDataSetChanged();
 				} catch (Exception e) {

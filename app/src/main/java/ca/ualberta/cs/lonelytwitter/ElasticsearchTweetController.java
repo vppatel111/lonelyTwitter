@@ -80,7 +80,6 @@ public class ElasticsearchTweetController {
 
     }
 
-    // TODO: Change the index
     public static class SearchTweetTask extends AsyncTask<String, Void, ArrayList<Tweet>> {
 
         protected ArrayList<Tweet> doInBackground(String... params) {
@@ -89,16 +88,10 @@ public class ElasticsearchTweetController {
             ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 
             String query = "{\n" +
-                        "    \"query\": {\n" +
-                        "        \"filtered\" : {\n" +
-                        "            \"query\" : {\n" +
-                        "                \"query_string\" : {\n" +
-                        "                    \"query\" : \"message\"\n" +
-                        "                }\n" +
-                        "            },\n" +
-                        "            \"filter\" : {\n" +
-                        "                \"term\" : { \"message\" : \"" + params[0] + "\" }\n" +
-                        "            }\n" +
+                        "     \"query\" : {\n" +
+                        "        \"query_string\" : {\n" +
+//                        "            \"default_field\" : \"message\"\n" +
+                        "            \"query\" : \"" + params[0] + "\"\n" +
                         "        }\n" +
                         "    }\n" +
                         "}";
@@ -120,6 +113,7 @@ public class ElasticsearchTweetController {
                     tweetList = result.getSourceAsObjectList(NormalTweet.class);
 
                     tweets.addAll(tweetList);
+                    
                 }
             } catch (IOException e) {
 
