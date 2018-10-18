@@ -113,7 +113,7 @@ public class ElasticsearchTweetController {
                     tweetList = result.getSourceAsObjectList(NormalTweet.class);
 
                     tweets.addAll(tweetList);
-                    
+
                 }
             } catch (IOException e) {
 
