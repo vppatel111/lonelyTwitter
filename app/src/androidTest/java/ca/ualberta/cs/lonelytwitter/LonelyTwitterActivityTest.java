@@ -62,14 +62,27 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
 
 
         solo.clickInList(0);
-
-
         solo.assertCurrentActivity("Wrong Activity", EditTweetActivity.class);
-
-        assertTrue(solo.waitForText("New Activity"));
 
         solo.goBack();
         solo.assertCurrentActivity("Wrong Activity", LonelyTwitterActivity.class);
+
+    }
+
+    public void testEditTweet() {
+
+        // Need a reference to activity
+        LonelyTwitterActivity activity = (LonelyTwitterActivity) solo.getCurrentActivity();
+
+        // Need to be able to look at the list of tweets we already have.
+        final ListView oldTweetsList = activity.getOldTweetsList();
+        Tweet tweet =(Tweet) oldTweetsList.getItemAtPosition(0);
+
+        // Click on one of 'em.
+        solo.clickInList(0);
+
+        // See if the tweet information exists in the format: "<Date>: <Message>"
+        solo.waitForText(tweet.getDate() + ": " + tweet.getMessage());
 
     }
 
